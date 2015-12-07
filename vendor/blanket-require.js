@@ -80,6 +80,13 @@ if (blanket.options('enableCoverage')) {
         }
         return savedRequire(name);
     };
+    
+    // workaround for:
+    //    https://github.com/sglanzer/ember-cli-blanket/issues/85
+    // which causes:
+    //    https://github.com/ember-cli/ember-cli-test-loader/issues/15
+    require.unsee = savedRequire.unsee;
+    
     blanket.options('reporter', blanket.customReporter);
 
 }
